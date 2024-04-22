@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People Search</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="js/js.js" type="module"></script>
+</head>
+<body>
+    <header>
+        <h1>People Search</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="vehicles.html">Vehicle Search</a></li>
+                <li><a href="add_vehicles.html">Add a Vehicle</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Search for People</h2>
+        <form id="search-people-form">
+            <label for="search-name">Enter Name or License Number:</label>
+            <input type="text" id="search-name" name="name">
+            <button type="submit">Search</button>
+        </form>
+        <div id="people-results"></div>
+    </main>
+    <aside>
+        <h3>Helpful Tips</h3>
+        <p>Enter a full name or partial name to retrieve records. You can also search by license number.</p>
+    </aside>
+    <footer>
+        <p>Copyright © Yizhen's website 2024</p>
+    </footer>
+</body>
+</html>

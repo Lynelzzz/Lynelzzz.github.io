@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Search</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="js/js.js" type="module"></script>
+</head>
+<body>
+    <header>
+        <h1>Vehicle Search</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="people.html">People Search</a></li>
+                <li><a href="add_vehicles.html">Add a Vehicle</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Search for Vehicles</h2>
+        <form id="search-vehicles-form">
+            <label for="search-rego">Enter Registration Number:</label>
+            <input type="text" id="search-rego" name="registration">
+            <button type="submit">Search</button>
+        </form>
+        <div id="vehicle-results"></div>
+    </main>
+    <aside>
+        <h3>Additional Information</h3>
+        <p>Search by vehicle registration number to find details about vehicle and its owner.</p>
+    </aside>
+    <footer>
+        <p>Copyright © Yizhen's website 2024</p>
+    </footer>
+</body>
+</html>

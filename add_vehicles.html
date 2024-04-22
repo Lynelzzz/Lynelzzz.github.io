@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a Vehicle</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="js/js.js" type="module"></script>
+</head>
+<body>
+    <header>
+        <h1>Add a Vehicle</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="people.html">People Search</a></li>
+                <li><a href="vehicles.html">Vehicle Search</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Add New Vehicle</h2>
+        <form id="add-vehicle-form">
+            <label for="rego">Registration Number:</label>
+            <input type="text" id="rego" name="registration">
+            <label for="make">Make:</label>
+            <input type="text" id="make" name="make">
+            <label for="model">Model:</label>
+            <input type="text" id="model" name="model">
+            <label for="colour">Colour:</label>
+            <input type="text" id="colour" name="colour">
+            <button type="submit">Add Vehicle</button>
+        </form>
+    </main>
+    <aside>
+        <h3>Instructions</h3>
+        <p>Fill out all fields to add a new vehicle to the database.</p>
+    </aside>
+    <footer>
+        <p>Copyright © Yizhen's website 2024</p>
+    </footer>
+</body>
+</html>
