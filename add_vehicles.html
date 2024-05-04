@@ -29,8 +29,26 @@
             <input type="text" id="model" name="model">
             <label for="colour">Colour:</label>
             <input type="text" id="colour" name="colour">
-            <button type="submit">Add Vehicle</button>
+            <label for="owner">OwnerID:</label>
+            <input type="text" id="owner" name="owner">
+            <button type="submit">Add vehicle</button>
         </form>
+        <form id="add-owner-form" style="margin-top: 20px;">
+            <h3>Add Owner Details</h3>
+            <label for="personid">Person ID:</label>
+            <input type="text" id="personid" name="personid">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address">
+            <label for="dob">Date of Birth:</label>
+            <input type="text" id="dob" name="dob">
+            <label for="license">License Number:</label>
+            <input type="text" id="license" name="license">
+            <label for="expire">License Expiry Date:</label>
+            <input type="text" id="expire" name="expire">
+            <button type="submit">Add owner</button>
+        </form>  
     </main>
     <aside>
         <img src="tips.png" alt="useful tips" class="img">
@@ -38,7 +56,7 @@
         <p>Fill out all fields to add a new vehicle to the database.</p>
     </aside>
     <footer>
-        <p>Copyright © Yizhen's website 2024</p>
+        <div id="message"></div>
     </footer>
 </body>
 </html>
