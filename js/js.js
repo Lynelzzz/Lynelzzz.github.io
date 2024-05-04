@@ -1,28 +1,33 @@
 import { createClient } from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 const supabase = createClient('https://uinwygivzoztiewobtld.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVpbnd5Z2l2em96dGlld29idGxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTM1NjUyODYsImV4cCI6MjAyOTE0MTI4Nn0.ImDYy9dwONktPysI9c7eKgfkMe_uwyjSADCUZd67Jps')
+
 //people
 async function searchPeople(query) {
+  if (!query.trim()) {
+    document.getElementById('message').textContent = 'Error: Input cannot be empty';
+    return;
+  }
   try {
-      let { data, error, status } = await supabase
-          .from('People')
-          .select('*')
-          .or(`Name.ilike.%${query}%`,`LicenseNumber.ilike.%${query}%`);         
+    let { data, error } = await supabase
+        .from('People')
+        .select('*')
+        .or(`Name.ilike.%${query}%`, `LicenseNumber.ilike.%${query}%`);//Searching for data from the name or license number
 
-      if (error) throw error;
-      if (data.length === 0) {
-          document.getElementById('results').innerHTML = '<p>No results found</p>';
-      } else {
-          updatePeopleResults(data); 
-          let message = document.getElementById("message")
-          message.innerHTML = ''
-          message.innerHTML = "Search successful"
-      }
+    if (error) throw error;
+    if (data.length === 0) {
+        document.getElementById('results').innerHTML = '<p>No results found</p>';
+        document.getElementById('message').textContent = 'No results found';
+    } else {
+        updatePeopleResults(data);
+        document.getElementById('message').textContent = 'Search successful';
+    }
   } catch (error) {
       console.error('Error fetching people:', error);
       document.getElementById('results').innerHTML = `<p>Error fetching data: ${error.message}</p>`;
   }
 }
 
+//update
 function updatePeopleResults(people) {
   const resultsContainer = document.getElementById('results');
   resultsContainer.innerHTML = people.map(person =>
@@ -39,28 +44,32 @@ function updatePeopleResults(people) {
 
 //vehicles
 async function searchVehicle(registrationNumber) {
+  if (!registrationNumber.trim()) {
+    document.getElementById('message').textContent = 'Error: Registration number cannot be empty';
+    return;
+  }
   try {
-      let { data, error } = await supabase
-          .from('Vehicles') 
-          .select('*')
-          .ilike('VehicleID', `%${registrationNumber}%`); 
+    let { data, error } = await supabase
+        .from('Vehicles') 
+        .select('*')
+        .ilike('VehicleID', `%${registrationNumber}%`); //Searching for data from the VehicleID
 
-      if (error) throw error;
+    if (error) throw error;
 
-      if (data.length === 0) {
-          document.getElementById('results').innerHTML = '<p>No results found</p>';
-      }
-          else {
-            updateVehicleResults(data); 
-            let message = document.getElementById("message")
-            message.innerHTML = ''
-            message.innerHTML = "Search successful"
-        }
+    if (data.length === 0) {
+        document.getElementById('results').innerHTML = '<p>No results found</p>';
+        document.getElementById('message').textContent = 'No result found';  
+    } else {
+        updateVehicleResults(data); 
+        document.getElementById('message').textContent = 'Search successful';
+    }
   } catch (error) {
-      console.error('Error fetching vehicles:', error);
-      document.getElementById('results').innerHTML = `<p>Error fetching data: ${error.message}</p>`;
+    console.error('Error fetching vehicles:', error);
+    document.getElementById('results').innerHTML = `<p>Error fetching data: ${error.message}</p>`;
+    document.getElementById('message').textContent = 'Error fetching data';
   }
 }
+
 
 function updateVehicleResults(vehicles) {
   const resultsContainer = document.getElementById('results');
@@ -71,6 +80,7 @@ function updateVehicleResults(vehicles) {
 
 
 async function addVehicle() {
+  //Retrieving input values for the new vehicle
   const rego = document.getElementById('rego').value;
   const make = document.getElementById('make').value;
   const model = document.getElementById('model').value;
@@ -91,7 +101,7 @@ async function addVehicle() {
           throw error;
       }
       else{
-      // Updating the message if succeed
+      // Updating the message if added successful
       document.getElementById('message').textContent = 'Vehicle added successfully';
       console.log('Added vehicle:', data); 
     }
@@ -102,6 +112,7 @@ async function addVehicle() {
 }
 
 async function addPerson() {
+  //Retrieving input values for the new perspn
   const personId = document.getElementById('personid').value;
   const name = document.getElementById('name').value;
   const address = document.getElementById('address').value;
@@ -146,6 +157,7 @@ async function addPerson() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  //Eventlistener for the search People Form
   const searchPeopleForm = document.getElementById('search-people-form');
   if (searchPeopleForm) {
     searchPeopleForm.addEventListener('submit', (e) => {
@@ -154,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
       searchPeople(name);
     });
   }
-
+  //Eventlistener for the search Vehicle Form
   const searchVehicleForm = document.getElementById('search-vehicles-form');
   if (searchVehicleForm) {
     searchVehicleForm.addEventListener('submit', (e) => {
@@ -163,14 +175,15 @@ document.addEventListener('DOMContentLoaded', () => {
       searchVehicle(registrationNumber);
     });
   }
-
+  //Eventlistener for the add Vehicle Form
   const addVehicleForm = document.getElementById('add-vehicle-form');
     if (addVehicleForm) {
         addVehicleForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Prevent the default form submission
-            addVehicle(); // Call the addVehicle function when the form is submitted
+            e.preventDefault();
+            addVehicle();
         });
     }
+  //Eventlistener for the add Person Form
   const addPersonForm = document.getElementById('add-owner-form');
     if (addPersonForm) {
         addPersonForm.addEventListener('submit', (e) => {

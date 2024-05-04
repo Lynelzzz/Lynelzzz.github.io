@@ -65,6 +65,7 @@ button {
 
 button:hover {
     background-color: #0056b3;
+    box-shadow: 0 0 8px rgba(0, 86, 179, 0.5);
 }
 
 #people-results, #vehicle-results {
@@ -84,13 +85,12 @@ button:hover {
     grid-template-rows: auto 1fr auto;
 }
 
-
 footer p {
     font-size: 0.8em;
 }
 
 @media (max-width: 500px) {
-    body {
+    #container {
         grid-template-areas:
             "header"
             "main"
